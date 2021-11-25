@@ -11,6 +11,8 @@ In order to obtain a free API Key, head over to: https://p.nomics.com/cryptocurr
     <PackageTags>crypto, price, api, bitcoin, ethereum, solana, bnb, coinbase, nomics</PackageTags>
     <PackageIcon>CryptoPrice.jpg</PackageIcon>
     <PackageIconUrl />
+    <RepositoryUrl>https://github.com/ScottDurkin/CryptoPrice</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ScottDurkin/CryptoPrice</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

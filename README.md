@@ -26,6 +26,7 @@ namespace TestNugets
         {
             //Initalize the library by passing your API key into it.
             CryptoCore _CryptoPrice = new CryptoCore("");
+            
             //Get the current price of Bitcoin
             double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
 
@@ -34,11 +35,47 @@ namespace TestNugets
         }
     }
 }
-
 ```
-4. Console output - Result will differ depending on the price at the time of your request.
+Console Output
 ```
 58942.97387688
 ```
+
+4. Configure the currecy you would like to see the price of crypto in.
+```
+using CryptoPrice.Definitions;
+```
+
+5. Setting the currency to Euro.
+```c#
+using System;
+using CryptoPrice;
+using CryptoPrice.Definitions;
+namespace TestNugets
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Initalize the library by passing your API key into it.
+            CryptoCore _CryptoPrice = new CryptoCore("");
+
+            //Set the currency for the price return - Default is USD.
+            _CryptoPrice.SetCurrency = Fiat.EUR;
+
+            //Get the current price of Bitcoin
+            double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
+
+            //Output to console
+            Console.WriteLine(BitcoinPrice);
+        }
+    }
+}
+```
+Console Output
+```
+52928.63502381
+```
+
 # Nuget Package
 https://www.nuget.org/packages/CryptoPrice/

@@ -4,16 +4,22 @@ This projects main goal is to allow .NET developer to access real-time prices of
 
 # Get started with CryptoPrice
 
-<b>Note: In order to us CryptoPrice, you will need to obtain a free API Key from [`nomics.com`](https://p.nomics.com/cryptocurrency-bitcoin-api)</b>
+<b>Note: In order to use CryptoPrice, you will need to obtain a free API Key from [`nomics.com`](https://p.nomics.com/cryptocurrency-bitcoin-api)</b>
 
-1. Navigate to your package manager within Visual Studio and use the following command.
+1. Insallation
+.NET CLI:
 ```
-dotnet add package CryptoPrice --version 0.0.1
+dotnet add package CryptoPrice --version 0.0.2
 ```
+Nuget Package:
+[`https://www.nuget.org/packages/CryptoPrice/`](https://www.nuget.org/packages/CryptoPrice/)
+# 
+
 2. Once the package is installed add the following to the top of your class.
 ```
 using CryptoPrice;
 ```
+
 3. Getting the current price of Bitcoin
 ```c#
 using System;
@@ -25,7 +31,8 @@ namespace TestNugets
         static void Main(string[] args)
         {
             //Initalize the library by passing your API key into it.
-            CryptoPrice.CryptoPrice _CryptoPrice = new CryptoPrice.CryptoPrice("YOUR_API_KEY");
+            CryptoCore _CryptoPrice = new CryptoCore("YOUR_API_KEY");
+            
             //Get the current price of Bitcoin
             double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
 
@@ -34,11 +41,47 @@ namespace TestNugets
         }
     }
 }
-
 ```
-4. Console output - Result will differ depending on the price at the time of your request.
+Console Output
 ```
 58942.97387688
 ```
+
+4. Configure the currecy you would like to see the price of crypto in.
+```
+using CryptoPrice.Definitions;
+```
+
+5. Setting the currency to Euro.
+```c#
+using System;
+using CryptoPrice;
+using CryptoPrice.Definitions;
+namespace TestNugets
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Initalize the library by passing your API key into it.
+            CryptoCore _CryptoPrice = new CryptoCore("YOUR_API_KEY");
+
+            //Set the currency for the price return - Default is USD.
+            _CryptoPrice.SetCurrency = Fiat.EUR;
+
+            //Get the current price of Bitcoin
+            double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
+
+            //Output to console
+            Console.WriteLine(BitcoinPrice);
+        }
+    }
+}
+```
+Console Output
+```
+52928.63502381
+```
+
 # Nuget Package
 https://www.nuget.org/packages/CryptoPrice/

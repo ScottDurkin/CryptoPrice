@@ -4,7 +4,7 @@ This projects main goal is to allow .NET developer to access real-time prices of
 
 # Get started with CryptoPrice
 
-<b>Note: In order to us CryptoPrice, you will need to obtain a free API Key from [`nomics.com`](https://p.nomics.com/cryptocurrency-bitcoin-api)</b>
+<b>Note: In order to use CryptoPrice, you will need to obtain a free API Key from [`nomics.com`](https://p.nomics.com/cryptocurrency-bitcoin-api)</b>
 
 1. Navigate to your package manager within Visual Studio and use the following command.
 ```

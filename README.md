@@ -25,7 +25,7 @@ namespace TestNugets
         static void Main(string[] args)
         {
             //Initalize the library by passing your API key into it.
-            CryptoCore _CryptoPrice = new CryptoCore("");
+            CryptoCore _CryptoPrice = new CryptoCore("YOUR_API_KEY");
             
             //Get the current price of Bitcoin
             double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
@@ -58,7 +58,7 @@ namespace TestNugets
         static void Main(string[] args)
         {
             //Initalize the library by passing your API key into it.
-            CryptoCore _CryptoPrice = new CryptoCore("");
+            CryptoCore _CryptoPrice = new CryptoCore("YOUR_API_KEY");
 
             //Set the currency for the price return - Default is USD.
             _CryptoPrice.SetCurrency = Fiat.EUR;

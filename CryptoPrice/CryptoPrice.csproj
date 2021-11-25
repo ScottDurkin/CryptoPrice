@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Authors>Scott Durkin</Authors>
+    <Description>Get real-time crypto prices with one line of code.
+
+You will need to use your own API Key.
+In order to obtain a free API Key, head over to: https://p.nomics.com/cryptocurrency-bitcoin-api</Description>
+    <Version>0.0.1</Version>
+    <PackageTags>crypto, price, api, bitcoin, ethereum, solana, bnb, coinbase, nomics</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>

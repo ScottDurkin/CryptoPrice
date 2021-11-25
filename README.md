@@ -8,7 +8,7 @@ This projects main goal is to allow .NET developer to access real-time prices of
 
 1. Navigate to your package manager within Visual Studio and use the following command.
 ```
-dotnet add package CryptoPrice --version 0.0.1
+dotnet add package CryptoPrice --version 0.0.2
 ```
 2. Once the package is installed add the following to the top of your class.
 ```

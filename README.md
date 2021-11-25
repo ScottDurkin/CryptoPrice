@@ -6,14 +6,20 @@ This projects main goal is to allow .NET developer to access real-time prices of
 
 <b>Note: In order to use CryptoPrice, you will need to obtain a free API Key from [`nomics.com`](https://p.nomics.com/cryptocurrency-bitcoin-api)</b>
 
-1. Navigate to your package manager within Visual Studio and use the following command.
+1. Insallation
+.NET CLI:
 ```
 dotnet add package CryptoPrice --version 0.0.2
 ```
+Nuget Package:
+[`https://www.nuget.org/packages/CryptoPrice/`](https://www.nuget.org/packages/CryptoPrice/)
+# 
+
 2. Once the package is installed add the following to the top of your class.
 ```
 using CryptoPrice;
 ```
+
 3. Getting the current price of Bitcoin
 ```c#
 using System;

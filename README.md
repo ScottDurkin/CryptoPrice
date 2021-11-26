@@ -1,6 +1,6 @@
 # About CryptoPrice
 
-This projects main goal is to allow .NET developer to access real-time prices of any Cyrpto Currency, using very little code.
+Cryptocurrency is hot right now. It remains unclear how it will perform in the future, but until then, it is the trending topic on the horizon. CryptoPrice is a library to obtain real-time price information on cryptocurrencies. It's .NET implementation is lightweight, fast, and easy to use.
 
 # Get started with CryptoPrice
 

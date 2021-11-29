@@ -7,14 +7,17 @@
 
 You will need to use your own API Key.
 In order to obtain a free API Key, head over to: https://p.nomics.com/cryptocurrency-bitcoin-api</Description>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <PackageTags>crypto, price, api, bitcoin, ethereum, solana, bnb, coinbase, nomics</PackageTags>
     <PackageIcon>CryptoPrice.jpg</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/ScottDurkin/CryptoPrice</RepositoryUrl>
     <PackageProjectUrl>https://github.com/ScottDurkin/CryptoPrice</PackageProjectUrl>
-    <PackageReleaseNotes>&gt; You can now configure the price return to different currencies.
-&gt; Added a library of Fiat currency codes - "using CryptoPrice.Definitions;"</PackageReleaseNotes>
+    <PackageReleaseNotes>Whats new?
+
+&gt; A new setting for max results.
+&gt; A library of Crypto currencies. "using CryptoPrice.Currencies"
+&gt; Get a list of prices.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

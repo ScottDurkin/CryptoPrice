@@ -15,15 +15,12 @@ namespace TestNugets
             CryptoCore _CryptoPrice = new CryptoCore("");
 
             //Set the currency for the price return - Default is USD.
-            _CryptoPrice.SetCurrency = Fiat.EUR;
+            _CryptoPrice.SetCurrency = Fiat.USD;
             //Get the current price of Bitcoin
             //double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
 
-            //String[] symbols = { "BTC", "ETH", "MANA", "GALA", "BNB" };
-            PriceList list = _CryptoPrice.GetCryptoPrices();
-
-            foreach (var detail in list.Prices)
-                Console.WriteLine(String.Format("{0} - {1}", detail.Symbol, detail.Price));
+            double marketcap = _CryptoPrice.GetMarketCap("ETH");
+            Console.Write(marketcap);
 
             //Output to console
             //Console.WriteLine(BitcoinPrice);

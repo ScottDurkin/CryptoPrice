@@ -19,8 +19,8 @@ namespace TestNugets
             //Get the current price of Bitcoin
             //double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
 
-            String[] symbols = { "BTC", "ETH", "MANA", "GALA", "BNB" };
-            PriceList list = _CryptoPrice.GetCryptoPrices(symbols);
+            //String[] symbols = { "BTC", "ETH", "MANA", "GALA", "BNB" };
+            PriceList list = _CryptoPrice.GetCryptoPrices();
 
             foreach (var detail in list.Prices)
                 Console.WriteLine(String.Format("{0} - {1}", detail.Symbol, detail.Price));

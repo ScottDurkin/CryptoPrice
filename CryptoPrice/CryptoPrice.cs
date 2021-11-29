@@ -28,11 +28,21 @@ namespace CryptoPrice
                 API_KEY = BACKUP_API_KEY;
         }
 
+        /// <summary>
+        /// Get a single crypto price by passing in the symbol.
+        /// </summary>
+        /// <param name="Symbol">Default: BTC</param>
+        /// <returns>The price of any crypto symbol you give.</returns>
         public double GetCryptoPrice(String Symbol = "BTC")
         {
             return GetCoinPrice(Symbol);
         }
 
+        /// <summary>
+        /// Get a full list of prices by just passing in a string array of symbols.
+        /// </summary>
+        /// <param name="Symbols">Default: BTC, ETH</param>
+        /// <returns>A PriceList model, with a list of PriceDetails.</returns>
         public PriceList GetCryptoPrices(String[] Symbols = null)
         {
             Symbols = Symbols ?? DefaultSymbols;
@@ -42,6 +52,12 @@ namespace CryptoPrice
             return GetCoinPrices(join);
         }
 
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //  Protected functions that are used by public functions
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Get a single coin price
         protected double GetCoinPrice(String Symbol)
         {
             String request = Functions.BuildAPI_URL(API_URL, API_KEY, Symbol, _Settings);
@@ -52,6 +68,7 @@ namespace CryptoPrice
             return Convert.ToDouble(listRoot[0].price);
         }
 
+        //Get a list of coin prices
         protected PriceList GetCoinPrices(String Symbols)
         {
             String request = Functions.BuildAPI_URL(API_URL, API_KEY, Symbols, _Settings);
@@ -70,8 +87,6 @@ namespace CryptoPrice
 
             return list;
         }
-
-
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////

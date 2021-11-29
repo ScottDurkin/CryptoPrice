@@ -28,4 +28,8 @@ In order to obtain a free API Key, head over to: https://p.nomics.com/cryptocurr
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Definitions\" />
+  </ItemGroup>
+
 </Project>

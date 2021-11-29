@@ -10,6 +10,7 @@ namespace CryptoPrice.Models
     {
         public String Symbol { get; set; }
         public double Price { get; set; }
+        public double MarketCap { get; set; }
     }
 
     public class PriceList

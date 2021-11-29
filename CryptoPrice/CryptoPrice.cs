@@ -39,6 +39,16 @@ namespace CryptoPrice
         }
 
         /// <summary>
+        /// Get the market cap of a coin
+        /// </summary>
+        /// <param name="Symbol">Example: BTC</param>
+        /// <returns>The Market cap of the coin symbol</returns>
+        public double GetMarketCap(String Symbol = "BTC")
+        {
+            return GetCoinMarketCap(Symbol);
+        }
+
+        /// <summary>
         /// Get a full list of prices by just passing in a string array of symbols.
         /// </summary>
         /// <param name="Symbols">Default: BTC, ETH</param>
@@ -68,6 +78,17 @@ namespace CryptoPrice
             return Convert.ToDouble(listRoot[0].price);
         }
 
+        //Get a single coin market cap
+        protected double GetCoinMarketCap(String Symbol)
+        {
+            String request = Functions.BuildAPI_URL(API_URL, API_KEY, Symbol, _Settings);
+            String GetLatest = _webClient.DownloadString(request);
+
+            List<Root> listRoot = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Root>>(GetLatest);
+
+            return Convert.ToDouble(listRoot[0].market_cap);
+        }
+
         //Get a list of coin prices
         protected PriceList GetCoinPrices(String Symbols)
         {
@@ -82,6 +103,8 @@ namespace CryptoPrice
                 PriceDetails temp = new PriceDetails();
                 temp.Symbol = coin.symbol;
                 temp.Price = Convert.ToDouble(coin.price);
+                temp.MarketCap = Convert.ToDouble(coin.market_cap);
+
                 list.Prices.Add(temp);
             }
 

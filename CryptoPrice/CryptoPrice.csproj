@@ -7,7 +7,7 @@
 
 You will need to use your own API Key.
 In order to obtain a free API Key, head over to: https://p.nomics.com/cryptocurrency-bitcoin-api</Description>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <PackageTags>crypto, price, api, bitcoin, ethereum, solana, bnb, coinbase, nomics</PackageTags>
     <PackageIcon>CryptoPrice.jpg</PackageIcon>
     <PackageIconUrl />

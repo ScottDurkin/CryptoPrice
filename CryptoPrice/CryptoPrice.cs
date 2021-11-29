@@ -14,6 +14,8 @@ namespace CryptoPrice
         protected String API_KEY = "";
         protected String BACKUP_API_KEY = "7c9761d7177d7a673dc03035b680b08acc9023fc";
 
+        protected String[] DefaultSymbols = { "BTC", "ETH" };
+
         LibSettings _Settings;
 
         public CryptoCore(String ApiKey)
@@ -31,6 +33,15 @@ namespace CryptoPrice
             return GetCoinPrice(Symbol);
         }
 
+        public PriceList GetCryptoPrices(String[] Symbols = null)
+        {
+            Symbols = Symbols ?? DefaultSymbols;
+
+            String join = String.Join(",", Symbols);
+
+            return GetCoinPrices(join);
+        }
+
         protected double GetCoinPrice(String Symbol)
         {
             String request = Functions.BuildAPI_URL(API_URL, API_KEY, Symbol, _Settings);
@@ -39,6 +50,25 @@ namespace CryptoPrice
             List<Root> listRoot = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Root>>(GetLatest);
 
             return Convert.ToDouble(listRoot[0].price);
+        }
+
+        protected PriceList GetCoinPrices(String Symbols)
+        {
+            String request = Functions.BuildAPI_URL(API_URL, API_KEY, Symbols, _Settings);
+            String GetLatest = _webClient.DownloadString(request);
+            List<Root> listRoot = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Root>>(GetLatest);
+
+            PriceList list = new PriceList();
+
+            foreach(var coin in listRoot)
+            {
+                PriceDetails temp = new PriceDetails();
+                temp.Symbol = coin.symbol;
+                temp.Price = Convert.ToDouble(coin.price);
+                list.Prices.Add(temp);
+            }
+
+            return list;
         }
 
 

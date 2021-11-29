@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using CryptoPrice;
 using CryptoPrice.Currencies;
+using CryptoPrice.Models;
+
 namespace TestNugets
 {
     class Program
@@ -13,12 +15,18 @@ namespace TestNugets
             CryptoCore _CryptoPrice = new CryptoCore("");
 
             //Set the currency for the price return - Default is USD.
-            _CryptoPrice.SetCurrency = Fiat.USD;
+            _CryptoPrice.SetCurrency = Fiat.EUR;
             //Get the current price of Bitcoin
-            double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
+            //double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
+
+            String[] symbols = { "BTC", "ETH", "MANA", "GALA", "BNB" };
+            PriceList list = _CryptoPrice.GetCryptoPrices(symbols);
+
+            foreach (var detail in list.Prices)
+                Console.WriteLine(String.Format("{0} - {1}", detail.Symbol, detail.Price));
 
             //Output to console
-            Console.WriteLine(BitcoinPrice);
+            //Console.WriteLine(BitcoinPrice);
 
             #region create blocks of code
             //List<String> Finished = new List<string>();

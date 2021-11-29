@@ -21,6 +21,12 @@ In order to obtain a free API Key, head over to: https://p.nomics.com/cryptocurr
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Definitions\**" />
+    <EmbeddedResource Remove="Definitions\**" />
+    <None Remove="Definitions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
@@ -29,10 +35,6 @@ In order to obtain a free API Key, head over to: https://p.nomics.com/cryptocurr
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Definitions\" />
   </ItemGroup>
 
 </Project>

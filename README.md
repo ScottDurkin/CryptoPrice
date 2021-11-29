@@ -49,14 +49,14 @@ Console Output
 
 4. Configure the currecy you would like to see the price of crypto in.
 ```
-using CryptoPrice.Definitions;
+using CryptoPrice.Currencies;
 ```
 
 5. Setting the currency to Euro.
 ```c#
 using System;
 using CryptoPrice;
-using CryptoPrice.Definitions;
+using CryptoPrice.Currencies;
 namespace TestNugets
 {
     class Program
@@ -81,6 +81,46 @@ namespace TestNugets
 Console Output
 ```
 52928.63502381
+```
+
+6. Getting a list of crypto prices
+```c#
+using System;
+using CryptoPrice;
+using CryptoPrice.Currencies;
+using CryptoPrice.Models;
+
+namespace TestNugets
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Initalize the library by passing your API key into it.
+            CryptoCore _CryptoPrice = new CryptoCore("YOUR_API_KEY");
+
+            //Set the currency for the price return - Default is USD.
+            _CryptoPrice.SetCurrency = Fiat.USD;
+
+            //Get a list of Crypto Prices
+            String[] Symbols = { Crypto.BNB, Crypto.BTC, Crypto.CAKE, Crypto.ETH, Crypto.SOL, Crypto.GALA };
+            PriceList prices = _CryptoPrice.GetCryptoPrices(Symbols);
+
+            //Wrtie prices to console
+            foreach (var detail in prices.Prices)
+                Console.WriteLine(String.Format("{0} - {1}", detail.Symbol, detail.Price));
+        }
+    }
+}
+```
+Console Output
+```
+BTC - 57433.14607099
+ETH - 4345.36644844
+BNB - 615.08581624
+SOL - 206.49062392
+GALA - 0.70083059
+CAKE - 14.22022867
 ```
 
 # Nuget Package

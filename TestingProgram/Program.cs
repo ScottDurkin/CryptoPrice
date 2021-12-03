@@ -19,8 +19,17 @@ namespace TestNugets
             //Get the current price of Bitcoin
             //double BitcoinPrice = _CryptoPrice.GetCryptoPrice("BTC");
 
-            double marketcap = _CryptoPrice.GetMarketCap("ETH");
-            Console.Write(marketcap);
+            //String[] symbols = { "SHIB", "ETH", "MANA", "GALA", "BNB" };
+            //PriceList list = _CryptoPrice.GetCryptoPrices(symbols);
+
+            //foreach (var detail in list.Prices)
+            //    Console.WriteLine(String.Format("{0} - {1} - {2}", detail.Symbol, detail.Price, detail.MarketCap));
+
+            String price = _CryptoPrice.GetCryptoPriceStr("SHIB");
+
+
+            //String test = _CryptoPrice.FormatPrice(price);
+            Console.WriteLine(price);
 
             //Output to console
             //Console.WriteLine(BitcoinPrice);

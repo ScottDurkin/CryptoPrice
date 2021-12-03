@@ -1,8 +1,10 @@
 ﻿using CryptoPrice;
+using CryptoPrice.Currencies;
 using CryptoPrice.Models;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace CryptoPrice
 {
@@ -39,6 +41,36 @@ namespace CryptoPrice
         }
 
         /// <summary>
+        /// Get a single crypto price by passing in the symbol.
+        /// </summary>
+        /// <param name="Symbol"></param>
+        /// <returns>The price of the crypto symbol as a string. Perfect for Alt coins.</returns>
+        public String GetCryptoPriceString(String Symbol = "BTC")
+        {
+            return GetCoinPriceStr(Symbol);
+        }
+
+        /// <summary>
+        /// Get a Crypto Price with Async
+        /// </summary>
+        /// <param name="Symbol"></param>
+        /// <returns></returns>
+        public async Task<double> GetCryptoPriceAsync(String Symbol = "BTC")
+        {
+            return await GetCoinPriceAsync(Symbol);
+        }
+
+        /// <summary>
+        /// Get a Crypto Price with Async
+        /// </summary>
+        /// <param name="Symbol"></param>
+        /// <returns></returns>
+        public async Task<String> GetCryptoPriceStringAsync(String Symbol = "BTC")
+        {
+            return await GetCoinPriceStringAsync(Symbol);
+        }
+
+        /// <summary>
         /// Get the market cap of a coin
         /// </summary>
         /// <param name="Symbol">Example: BTC</param>
@@ -62,6 +94,29 @@ namespace CryptoPrice
             return GetCoinPrices(join);
         }
 
+        /// <summary>
+        /// Get a full list of prices by just passing in a string array of symbols.
+        /// </summary>
+        /// <param name="Symbols">Default: BTC, ETH</param>
+        /// <returns>A PriceList model, with a list of PriceDetails.</returns>
+        public async Task<PriceList> GetCryptoPricesAsync(String[] Symbols = null)
+        {
+            Symbols = Symbols ?? DefaultSymbols;
+
+            String join = String.Join(",", Symbols);
+
+            return await GetCoinPricesAsync(join);
+        }
+
+        public String FormatPrice(double price = 54356)
+        {
+            String rc = String.Empty;
+            String currencySym = String.Empty;
+            Symbol.Get.TryGetValue(_Settings.Currency, out currencySym);
+
+            return String.Format("{0}{1}", currencySym, price.ToString("N"));
+        }
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         //  Protected functions that are used by public functions
@@ -76,6 +131,38 @@ namespace CryptoPrice
             List<Root> listRoot = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Root>>(GetLatest);
 
             return Convert.ToDouble(listRoot[0].price);
+        }
+
+        protected String GetCoinPriceStr(String Symbol)
+        {
+            String request = Functions.BuildAPI_URL(API_URL, API_KEY, Symbol, _Settings);
+            String GetLatest = _webClient.DownloadString(request);
+
+            List<Root> listRoot = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Root>>(GetLatest);
+
+            return listRoot[0].price;
+        }
+
+        //Get a single coin price
+        protected async Task<double> GetCoinPriceAsync(String Symbol)
+        {
+            String request = Functions.BuildAPI_URL(API_URL, API_KEY, Symbol, _Settings);
+            String GetLatest = await _webClient.DownloadStringTaskAsync(request);
+
+            List<Root> listRoot = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Root>>(GetLatest);
+
+            return Convert.ToDouble(listRoot[0].price);
+        }
+
+        //Get a single coin price
+        protected async Task<String> GetCoinPriceStringAsync(String Symbol)
+        {
+            String request = Functions.BuildAPI_URL(API_URL, API_KEY, Symbol, _Settings);
+            String GetLatest = await _webClient.DownloadStringTaskAsync(request);
+
+            List<Root> listRoot = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Root>>(GetLatest);
+
+            return listRoot[0].price;
         }
 
         //Get a single coin market cap
@@ -111,6 +198,27 @@ namespace CryptoPrice
             return list;
         }
 
+        //Get a list of coin prices
+        protected async Task<PriceList> GetCoinPricesAsync(String Symbols)
+        {
+            String request = Functions.BuildAPI_URL(API_URL, API_KEY, Symbols, _Settings);
+            String GetLatest = await _webClient.DownloadStringTaskAsync(request);
+            List<Root> listRoot = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Root>>(GetLatest);
+
+            PriceList list = new PriceList();
+
+            foreach (var coin in listRoot)
+            {
+                PriceDetails temp = new PriceDetails();
+                temp.Symbol = coin.symbol;
+                temp.Price = Convert.ToDouble(coin.price);
+                temp.MarketCap = Convert.ToDouble(coin.market_cap);
+
+                list.Prices.Add(temp);
+            }
+
+            return list;
+        }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         //  Settings

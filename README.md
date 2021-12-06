@@ -9,7 +9,7 @@ Cryptocurrency is hot right now. It remains unclear how it will perform in the f
 1. Insallation
 .NET CLI:
 ```
-dotnet add package CryptoPrice --version 0.0.2
+dotnet add package CryptoPrice --version 0.0.3
 ```
 Nuget Package:
 [`https://www.nuget.org/packages/CryptoPrice/`](https://www.nuget.org/packages/CryptoPrice/)
